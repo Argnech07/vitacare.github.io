@@ -39,7 +39,7 @@ class DoctorBase(BaseModel):
         return validated or v  # Si es None, deja que EmailStr lo valide
 
 class DoctorCreate(DoctorBase):
-    password: str = Field(..., min_length=8, max_length=128, description="Contraseña (mínimo 8 caracteres)")
+    password: str = Field(..., min_length=8, max_length=72, description="Contraseña (mínimo 8 caracteres)")
 
     @field_validator('password')
     @classmethod
@@ -62,7 +62,7 @@ class DoctorUpdate(BaseModel):
     specialty: str | None = Field(None, min_length=1, max_length=100)
     license_number_E: str | None = Field(None, min_length=1, max_length=50)
     is_active: bool | None = None
-    password: str | None = Field(None, min_length=8, max_length=128, description="Contraseña nueva (mínimo 8 caracteres)")
+    password: str | None = Field(None, min_length=8, max_length=72, description="Contraseña nueva (mínimo 8 caracteres)")
 
     @field_validator('first_name', 'last_name', 'specialty', 'license_number_E')
     @classmethod
