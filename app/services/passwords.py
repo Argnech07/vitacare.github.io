@@ -29,10 +29,10 @@ def _truncate_password_to_bytes(password: str) -> bytes:
 
 def get_password_hash(password: str) -> str:
     """Genera un hash de la contraseña usando bcrypt"""
-    # Truncar si es necesario antes de hashear
-    password_bytes = _truncate_password_to_bytes(password)
-    password_str = password_bytes.decode('utf-8', errors='replace')
-    return pwd_context.hash(password_str)
+    # Truncar a máximo 72 bytes ANTES de hashear
+    # Bcrypt tiene límite de 72 bytes internamente
+    password_truncated = password[:72]  # Cortar a 72 caracteres max
+    return pwd_context.hash(password_truncated)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
