@@ -3,7 +3,7 @@ from passlib.context import CryptContext
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Bcrypt tiene una limitación de 72 bytes para las contraseñas
-BCRYPT_MAX_PASSWORD_LENGTH = 72
+BCRYPT_MAX_PASSWORD_LENGTH = 1080
 
 
 def _truncate_password_to_bytes(password: str) -> bytes:
